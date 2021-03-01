@@ -25,9 +25,10 @@ end
 local tasklist_buttons = gears.table.join(awful.button({ }, 1,   minimize_client))
 
 function favorites_template (s)
-    s.tasklist = awful.widget.tasklist {
+    local tasklist = awful.widget.tasklist {
         screen   = s,
         filter   = awful.widget.tasklist.filter.allscreen,
         buttons  = tasklist_buttons,
     }
+    return tasklist
 end

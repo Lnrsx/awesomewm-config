@@ -30,7 +30,7 @@ end
 
 -- Creates music player widget
 function music_template (s)
-    s.music = wibox.widget {
+    local music = wibox.widget {
         {
             music_widgets,
             top = 4, bottom = 4, left = 8, right = 8,
@@ -43,7 +43,7 @@ function music_template (s)
         widget = wibox.container.background
     }
 
-    s.musicinfo = wibox.widget {
+    local musicinfo = wibox.widget {
         {
             {
                 id = "music_info_text",
@@ -64,12 +64,12 @@ function music_template (s)
     }
 
     -- Finds imagebox objects from parent
-    local previous_widget = s.music:get_children_by_id("rewind_icon")[1]
-    local toggle_widget = s.music:get_children_by_id("pause_icon")[1]
-    local next_widget = s.music:get_children_by_id("fast_forward_icon")[1]
+    local previous_widget = music:get_children_by_id("rewind_icon")[1]
+    local toggle_widget = music:get_children_by_id("pause_icon")[1]
+    local next_widget = music:get_children_by_id("fast_forward_icon")[1]
 
-    local music_info_text = s.musicinfo:get_children_by_id("music_info_text")[1]
-    local music_info_background = s.musicinfo:get_children_by_id("music_info_background")[1]
+    local music_info_text = musicinfo:get_children_by_id("music_info_text")[1]
+    local music_info_background = musicinfo:get_children_by_id("music_info_background")[1]
 
     -- Sets left click bindings
     previous_widget:buttons(gears.table.join(
@@ -106,4 +106,6 @@ function music_template (s)
     -- Watches pause/play widget to check status of song every second
     awful.widget.watch("sp status", 1, update_widget_icon, toggle_widget)
     awful.widget.watch("sp metadata", 1, update_current_song, music_info_text)
+
+    return music, musicinfo
 end

@@ -1,5 +1,5 @@
 function power_template(s)
-    s.power = wibox.widget {
+    local power = wibox.widget {
         {
             {
                 id = "power",
@@ -19,7 +19,7 @@ function power_template(s)
         { name = "Shutdown", icon = beautiful.power_icon, action = "shutdown -h now" },
         { name = "Sleep", icon = beautiful.sleep_icon, action = "systemctl hibernate" },
         { name = "Restart", icon = beautiful.restart_icon, action = "reboot" },
-        { name = "Log Out", icon = beautiful.logout_icon, action = "exit" },
+        { name = "Log Out", icon = beautiful.logout_icon, action = "killall awesome" },
     }
 
     local popup = awful.popup {
@@ -80,7 +80,7 @@ function power_template(s)
     end
     popup:setup(rows)
     
-    s.power:buttons(
+    power:buttons(
         awful.util.table.join(
             awful.button({}, 1, function()
                 if popup.visible then
@@ -90,4 +90,6 @@ function power_template(s)
                 end
         end))
     )
+
+    return power
 end

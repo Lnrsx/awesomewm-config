@@ -8,7 +8,7 @@ function sysutils_template (s)
     local sysutil_widgets = create_img_widgets(sysutil_icons)
 
     -- Creates apps widget
-    s.tools = wibox.widget {
+    local tools = wibox.widget {
         {
             sysutil_widgets,
             top = 4, bottom = 4, left = 10, right = 8,
@@ -22,9 +22,9 @@ function sysutils_template (s)
     }
 
     -- Get icon objects from parent
-    local favorites = s.tools:get_children_by_id('heart_icon')[1]
-    local file = s.tools:get_children_by_id('file_icon')[1]
-    local apps = s.tools:get_children_by_id('search_icon')[1]
+    local favorites = tools:get_children_by_id('heart_icon')[1]
+    local file = tools:get_children_by_id('file_icon')[1]
+    local apps = tools:get_children_by_id('search_icon')[1]
 
     -- Set options for favorites
     local options = {
@@ -123,4 +123,6 @@ function sysutils_template (s)
         awful.button({ }, 1, function ()
             awful.spawn.easy_async_with_shell("rofi -show run", function() end)
     end)))
+
+    return tools
 end

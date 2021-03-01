@@ -192,6 +192,8 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local sysinfo = sysinfo_template()
+
 awful.screen.connect_for_each_screen(function(s)
     -- Set wallpaper
     set_wallpaper(s)
@@ -203,13 +205,13 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
     s.padding = {left = 10, right = 10, top = 10, bottom = 10}
     -- Creates system utilities widget
-    sysutils_template(s)
+    s.tools = sysutils_template(s)
 
     -- Creates favorites widget
-    favorites_template(s)
+    s.tasklist = favorites_template(s)
 
     -- Creates the power button
-    power_template(s)
+    s.power = power_template(s)
 
     -- Creates the bottom_bar
     s.bottombar = awful.wibar({ 
