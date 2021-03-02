@@ -72,6 +72,7 @@ beautiful.init("/home/felix/.config/awesome/default/theme.lua")
 require("utils/widget_template")
 
 -- Import own modules
+require("modules.calendar")
 require("modules.sysutils")
 require("modules.tasklist")
 require("modules.sysinfo")
@@ -244,6 +245,9 @@ awful.screen.connect_for_each_screen(function(s)
         }   
     }
 end)
+
+-- Places calendar widget on primary screen
+awful.placement.bottom(calendar_template(), { margins = {bottom = 500, left = 500}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(
