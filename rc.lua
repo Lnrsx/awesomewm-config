@@ -77,6 +77,7 @@ require("modules.sysutils")
 require("modules.tasklist")
 require("modules.sysinfo")
 require("modules.power")
+require("modules.desktopclock")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -248,7 +249,10 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 
 -- Places calendar widget on primary screen
-awful.placement.bottom(calendar_template(), { margins = {bottom = 500, left = 600}, parent = awful.screen.primary})
+awful.placement.bottom(calendar_template(), { margins = {bottom = 400, left = 600}, parent = awful.screen.primary})
+
+-- Places desktop clock widget on primary screen
+awful.placement.bottom(desktopclock_template(), { margins = {bottom = 318, left = 600}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(
