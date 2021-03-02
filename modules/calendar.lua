@@ -1,21 +1,33 @@
+local styles = { }
+
+styles.normal = { }
+
+styles.focus = {
+    fg = '#FC6294',
+    markup = function(t) return '<b>'..t..'</b>' end
+}
+
+styles.header = {
+    fg = '#6DBFD4',
+    markup = function(t) return '<span font_desc="BreezeSans, Medium 27">'..t..'</span>' end
+}
+
+styles.weekday = {
+    markup = function(t) return '<span font_desc="BreezeSans, Medium 17">'..t..'</span>' end
+}
+
 local function decorate_cell (widget, flag, date)
-    if flag == 'focus' then
-        local ret = wibox.widget {
-            {
-                widget,
-                margins = 2,
-                widget = wibox.container.margin
-            },
-            shape = function(cr, width, height)
-                gears.shape.rounded_rect(cr, width, height, 3)
-            end,
-            bg = '#5466A8',
-            widget = wibox.container.background
-        }
-        return ret
-    else
-        return widget
+    local props = styles[flag] or { }
+    if props.markup and widget.get_text and widget.set_markup then
+        widget:set_markup(props.markup(widget:get_text()))
     end
+
+    widget = wibox.widget {
+        widget,
+        fg = props.fg or '#ffffff',
+        widget = wibox.container.background
+    }
+    return widget
 end
 
 function calendar_template()
@@ -23,18 +35,18 @@ function calendar_template()
         visible = true,
         bg = beautiful.bg_normal,
         ontop = true,
-        height = 200,
-        width = 250,
+        height = 375,
+        width = 300,
         shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 25)
+            gears.shape.rounded_rect(cr, width, height, 16)
         end
     }
 
     local cal = wibox.widget {
         {
             date         = os.date('*t'),
-            font = 'BreezeSans, Medium 15',
-            spacing      = 7.5,
+            font = 'BreezeSans, Medium 16',
+            spacing      = 10,
             week_numbers = false,
             start_sunday = false,
             fn_embed = decorate_cell,

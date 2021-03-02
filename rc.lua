@@ -205,6 +205,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
     s.padding = {left = 10, right = 10, top = 10, bottom = 10}
+    
     -- Creates system utilities widget
     s.tools = sysutils_template(s)
 
@@ -242,12 +243,12 @@ awful.screen.connect_for_each_screen(function(s)
             s.musicinfo,
             sysinfo,
             s.power
-        }   
+        }
     }
 end)
 
 -- Places calendar widget on primary screen
-awful.placement.bottom(calendar_template(), { margins = {bottom = 500, left = 500}, parent = awful.screen.primary})
+awful.placement.bottom(calendar_template(), { margins = {bottom = 500, left = 600}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(

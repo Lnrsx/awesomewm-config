@@ -14,7 +14,7 @@ function sysutils_template (s)
             top = 4, bottom = 4, left = 10, right = 8,
             widget = wibox.container.margin
         },
-        bg = '#182236',
+        bg = beautiful.bg_normal,
         shape = function(cr, width, height)
             gears.shape.rounded_bar(cr, width, height, 15) 
         end,
