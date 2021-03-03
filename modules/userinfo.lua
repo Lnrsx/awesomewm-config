@@ -2,7 +2,6 @@ function userinfo_template()
     local container = wibox {
         visible = true,
         bg = beautiful.bg_normal,
-        ontop = true,
         height = 300,
         width = 300,
         shape = function(cr, width, height)

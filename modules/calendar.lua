@@ -34,7 +34,6 @@ function calendar_template()
     local container = wibox {
         visible = true,
         bg = beautiful.bg_normal,
-        ontop = true,
         height = 375,
         width = 300,
         shape = function(cr, width, height)
