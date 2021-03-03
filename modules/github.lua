@@ -2,7 +2,7 @@ function github_template()
     local container = wibox {
         visible = true,
         bg = beautiful.bg_normal,
-        height = 225,
+        height = 460,
         width = 150,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 16)
@@ -19,12 +19,13 @@ function github_template()
             },
             {
                 text = 'Github',
+                font = 'BreezeSans, Medium 21',
                 widget = wibox.widget.textbox
             },
             spacing = 5,
             layout = wibox.layout.fixed.horizontal
         },
-        margins = 5,
+        margins = 10,
         widget = wibox.container.margin,
     }
 

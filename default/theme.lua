@@ -135,6 +135,8 @@ local icons = {
     ["cpu_icon"] = "system/cpu.svg",
     ["heart_icon"] = "system/heart.svg",
     ["github_icon"] = "system/github.svg",
+    ["settings_icon"] = "system/settings.svg",
+    ["software_icon"] = "system/software.svg",
 
     ["network_connected"] = "system/network/connected.svg",
     ["network_disconnected"] = "system/network/disconnected.svg",

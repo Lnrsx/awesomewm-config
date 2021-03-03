@@ -2,8 +2,8 @@ function weather_template()
     local container = wibox {
         visible = true,
         bg = beautiful.bg_normal,
-        height = 75,
-        width = 215,
+        height = 69,
+        width = 300,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 16)
         end

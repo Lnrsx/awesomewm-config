@@ -76,13 +76,12 @@ require("modules.calendar")
 require("modules.sysutils")
 require("modules.tasklist")
 require("modules.sysinfo")
-require("modules.power")
+require("modules.buttons")
 require("modules.desktopclock")
 require("modules.userinfo")
 require("modules.shortcuts")
 require("modules.weather")
 require("modules.github")
-require("modules.PH")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -257,20 +256,19 @@ awful.placement.bottom(calendar_template(), { margins = {bottom = 400, left = 62
 awful.placement.bottom(desktopclock_template(), { margins = {bottom = 317, left = 625}, parent = awful.screen.primary})
 
 -- User info
-awful.placement.bottom(userinfo_template(), { margins = {bottom = 400, left = -625}, parent = awful.screen.primary})
+awful.placement.bottom(userinfo_template(), { margins = {bottom = 469, left = -625}, parent = awful.screen.primary})
 
 -- Shortcuts
 awful.placement.bottom(websites_template(), { margins = {bottom = 550, left = 160}, parent = awful.screen.primary})
 awful.placement.bottom(apps_template(), { margins = {bottom = 317, left = 160}, parent = awful.screen.primary})
 
-awful.placement.bottom(github_template(), { margins = {bottom = 550, left = -160}, parent = awful.screen.primary})
-awful.placement.bottom(ph_template(), { margins = {bottom = 317, left = -160}, parent = awful.screen.primary})
+awful.placement.bottom(github_template(), { margins = {bottom = 315, left = -160}, parent = awful.screen.primary})
 
 -- Weather
-awful.placement.bottom(weather_template(), { margins = {bottom = 317, left = -540}, parent = awful.screen.primary})
+awful.placement.bottom(weather_template(), { margins = {bottom = 392, left = -625}, parent = awful.screen.primary})
 
--- Power
-awful.placement.bottom(power_template(), { margins = {bottom = 317, left = -850}, parent = awful.screen.primary})
+-- Buttons
+awful.placement.bottom(buttons_template(), { margins = {bottom = 315, left = -625}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(
