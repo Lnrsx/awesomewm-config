@@ -118,6 +118,7 @@ theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
 theme.wallpaper = themes_path.."default/background.png"
+theme.pfp = themes_path.."default/image.jpeg"
 
 local assets_path = themes_path.."default/assets/"
 

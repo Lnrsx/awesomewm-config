@@ -10,7 +10,7 @@ function desktopclock_template()
         end
     }
 
-    local clock = wibox.widget.textclock ('<span font="BreezeSans, Medium 36"> %H:%M </span>', 5)
+    local clock = wibox.widget.textclock ('<span font="BreezeSans, Medium 32"> %H : %M : %S </span>', 1)
 
     container:setup {
         clock,

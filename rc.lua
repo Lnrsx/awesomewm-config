@@ -78,6 +78,7 @@ require("modules.tasklist")
 require("modules.sysinfo")
 require("modules.power")
 require("modules.desktopclock")
+require("modules.userinfo")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -237,7 +238,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.tools,
             s.tasklist,
         },
-        s.music,
+        nil, -- Middle widget placeholder
         { -- Right widget
             spacing = 5,
             layout = wibox.layout.fixed.horizontal,
@@ -248,11 +249,15 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 
--- Places calendar widget on primary screen
+-- Widgets placed on primary screen only
+-- Calendar widget
 awful.placement.bottom(calendar_template(), { margins = {bottom = 400, left = 600}, parent = awful.screen.primary})
 
--- Places desktop clock widget on primary screen
+-- Desktop clock widget
 awful.placement.bottom(desktopclock_template(), { margins = {bottom = 318, left = 600}, parent = awful.screen.primary})
+
+-- User info
+awful.placement.bottom(userinfo_template(), { margins = {bottom = 475, left = -600}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(
