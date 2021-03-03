@@ -1,16 +1,16 @@
-function power_template()
+function weather_template()
     local container = wibox {
         visible = true,
-        bg = '#ff5555',
+        bg = beautiful.bg_normal,
         height = 75,
-        width = 75,
+        width = 215,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 16)
         end
     }
 
     local clock = wibox.widget {
-        text = "Power",
+        text = "Weather Widget",
         widget = wibox.widget.textbox
     }
 

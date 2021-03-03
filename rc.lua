@@ -80,6 +80,9 @@ require("modules.power")
 require("modules.desktopclock")
 require("modules.userinfo")
 require("modules.shortcuts")
+require("modules.weather")
+require("modules.github")
+require("modules.PH")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -215,9 +218,6 @@ awful.screen.connect_for_each_screen(function(s)
     -- Creates favorites widget
     s.tasklist = favorites_template(s)
 
-    -- Creates the power button
-    s.power = power_template(s)
-
     -- Creates the bottom_bar
     s.bottombar = awful.wibar({ 
         position = 'bottom',
@@ -245,24 +245,32 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             s.musicinfo,
             sysinfo,
-            s.power
         }
     }
 end)
 
--- Widgets placed on primary screen only
+-- Widgets placed on primary screen only (450px height)
 -- Calendar widget
-awful.placement.bottom(calendar_template(), { margins = {bottom = 400, left = 615}, parent = awful.screen.primary})
+awful.placement.bottom(calendar_template(), { margins = {bottom = 400, left = 625}, parent = awful.screen.primary})
 
 -- Desktop clock widget
-awful.placement.bottom(desktopclock_template(), { margins = {bottom = 318, left = 615}, parent = awful.screen.primary})
+awful.placement.bottom(desktopclock_template(), { margins = {bottom = 317, left = 625}, parent = awful.screen.primary})
 
 -- User info
-awful.placement.bottom(userinfo_template(), { margins = {bottom = 475, left = -615}, parent = awful.screen.primary})
+awful.placement.bottom(userinfo_template(), { margins = {bottom = 400, left = -625}, parent = awful.screen.primary})
 
 -- Shortcuts
-awful.placement.bottom(websites_template(), { margins = {bottom = 550, left = 150}, parent = awful.screen.primary})
-awful.placement.bottom(apps_template(), { margins = {bottom = 317, left = 150}, parent = awful.screen.primary})
+awful.placement.bottom(websites_template(), { margins = {bottom = 550, left = 160}, parent = awful.screen.primary})
+awful.placement.bottom(apps_template(), { margins = {bottom = 317, left = 160}, parent = awful.screen.primary})
+
+awful.placement.bottom(github_template(), { margins = {bottom = 550, left = -160}, parent = awful.screen.primary})
+awful.placement.bottom(ph_template(), { margins = {bottom = 317, left = -160}, parent = awful.screen.primary})
+
+-- Weather
+awful.placement.bottom(weather_template(), { margins = {bottom = 317, left = -540}, parent = awful.screen.primary})
+
+-- Power
+awful.placement.bottom(power_template(), { margins = {bottom = 317, left = -850}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(

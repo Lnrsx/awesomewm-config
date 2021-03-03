@@ -2,7 +2,7 @@ function userinfo_template()
     local container = wibox {
         visible = true,
         bg = beautiful.bg_normal,
-        height = 300,
+        height = 375,
         width = 300,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 16)
