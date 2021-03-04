@@ -268,8 +268,11 @@ awful.placement.bottom(github_template(), { margins = {bottom = 315, left = -57}
 -- Weather
 awful.placement.bottom(weather_template(), { margins = {bottom = 392, left = -625}, parent = awful.screen.primary})
 
+local power_menu = power_menu() -- Power menu needs to be referanceable so buttons_template can control visibility
+awful.placement.bottom(power_menu, { margins = {bottom = 237, left = -625}, parent = awful.screen.primary})
+
 -- Buttons
-awful.placement.bottom(buttons_template(), { margins = {bottom = 315, left = -625}, parent = awful.screen.primary})
+awful.placement.bottom(buttons_template(power_menu), { margins = {bottom = 315, left = -625}, parent = awful.screen.primary})
 
 -- Mouse bindings
 root.buttons(gears.table.join(

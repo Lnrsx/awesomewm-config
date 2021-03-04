@@ -127,8 +127,11 @@ local icons = {
     ["search_icon"] = "system/search.svg",
     ["console_icon"] = "system/console.svg",
     ["power_icon"] = "system/power.svg",
+    ["power_settings_icon"] = "system/power_settings.svg",
     ["left_icon"] = "system/left_arrow.svg",
     ["right_icon"] = "system/right_arrow.svg",
+    ["up_icon"] = "system/up_arrow.svg",
+    ["down_icon"] = "system/down_arrow.svg",
     ["sleep_icon"] = "system/sleep.svg",
     ["restart_icon"] = "system/restart.svg",
     ["logout_icon"] = "system/logout.svg",
@@ -136,6 +139,7 @@ local icons = {
     ["heart_icon"] = "system/heart.svg",
     ["settings_icon"] = "system/settings.svg",
     ["software_icon"] = "system/software.svg",
+    ["night_icon"] = "system/night.svg",
 
     ["network_connected"] = "system/network/connected.svg",
     ["network_disconnected"] = "system/network/disconnected.svg",
@@ -162,18 +166,27 @@ for k,v in pairs(icons) do
     theme[k] = assets_path..v
 end
 
---[[ local rainbow = {
+theme.rainbow = {
     '#d04844', -- Red
     '#c9794c', -- Orange
     '#cab14f', -- Yellow
     '#99c557', -- Light green
-    '#79ca4b', -- Green
     '#5ab98f', -- Blue-green ?
     '#51b7d8', -- Light blue
     '#5b67c4', -- Warlock colour ?
     '#774dce', -- Purple
-    '#b355c0', -- Pink
 } --]]
+
+theme.rainbow_focus = {
+    '#f49e9c', -- Red
+    '#f3bd9f', -- Orange
+    '#f9e79f', -- Yellow
+    '#d1eda6', -- Light green
+    '#acefd1', -- Blue-green ?
+    '#8bd5ed', -- Light blue
+    '#a2abeb', -- Warlock colour ?
+    '#a483e7', -- Purple
+}
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

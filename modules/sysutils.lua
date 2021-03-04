@@ -1,8 +1,8 @@
 function sysutils_template (s)
     local sysutil_icons = {
-        {"heart_icon"},
-        {"file_icon"},
-        {"search_icon"}
+        "heart_icon",
+        "file_icon",
+        "search_icon"
     }
 
     local sysutil_widgets = create_img_widgets(sysutil_icons)
@@ -94,7 +94,7 @@ function sysutils_template (s)
         table.insert(rows, row)   
     end
     popup:setup(rows)
-    
+    --[[
     favorites:buttons(
         awful.util.table.join(
             awful.button({}, 1, function()
@@ -122,7 +122,7 @@ function sysutils_template (s)
     apps:buttons(gears.table.join(
         awful.button({ }, 1, function ()
             awful.spawn.easy_async_with_shell("rofi -show run", function() end)
-    end)))
+    end))) --]]
 
     return tools
 end
