@@ -259,10 +259,11 @@ awful.placement.bottom(desktopclock_template(), { margins = {bottom = 317, left 
 awful.placement.bottom(userinfo_template(), { margins = {bottom = 469, left = -625}, parent = awful.screen.primary})
 
 -- Shortcuts
-awful.placement.bottom(websites_template(), { margins = {bottom = 550, left = 160}, parent = awful.screen.primary})
-awful.placement.bottom(apps_template(), { margins = {bottom = 317, left = 160}, parent = awful.screen.primary})
+awful.placement.bottom(websites_template(), { margins = {bottom = 550, left = 260}, parent = awful.screen.primary})
+awful.placement.bottom(apps_template(), { margins = {bottom = 317, left = 260}, parent = awful.screen.primary})
 
-awful.placement.bottom(github_template(), { margins = {bottom = 315, left = -160}, parent = awful.screen.primary})
+-- Github repo tracker
+awful.placement.bottom(github_template(), { margins = {bottom = 315, left = -57}, parent = awful.screen.primary})
 
 -- Weather
 awful.placement.bottom(weather_template(), { margins = {bottom = 392, left = -625}, parent = awful.screen.primary})

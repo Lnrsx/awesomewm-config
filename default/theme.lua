@@ -134,7 +134,6 @@ local icons = {
     ["logout_icon"] = "system/logout.svg",
     ["cpu_icon"] = "system/cpu.svg",
     ["heart_icon"] = "system/heart.svg",
-    ["github_icon"] = "system/github.svg",
     ["settings_icon"] = "system/settings.svg",
     ["software_icon"] = "system/software.svg",
 
@@ -151,11 +150,30 @@ local icons = {
     ["rewind_icon"] = "music/previous.svg",
     ["play_icon"] = "music/play.svg",
     ["pause_icon"] = "music/pause.svg",
+
+    ["github_icon"] = "sites/github.svg",
+    ["youtube_icon"] = "sites/youtube.svg",
+    ["reddit_icon"] = "sites/reddit.svg",
+    ["twitch_icon"] = "sites/twitch.svg",
+    ["twitter_icon"] = "sites/twitter.svg",
 }
 
 for k,v in pairs(icons) do
     theme[k] = assets_path..v
 end
+
+--[[ local rainbow = {
+    '#d04844', -- Red
+    '#c9794c', -- Orange
+    '#cab14f', -- Yellow
+    '#99c557', -- Light green
+    '#79ca4b', -- Green
+    '#5ab98f', -- Blue-green ?
+    '#51b7d8', -- Light blue
+    '#5b67c4', -- Warlock colour ?
+    '#774dce', -- Purple
+    '#b355c0', -- Pink
+} --]]
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

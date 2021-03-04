@@ -1,24 +1,19 @@
-local function generate_widgets(sites, user_args)
-    local args = user_args or { }
-    local colour = args.colour or '#ffffff'
-    local font = args.font or 'BreezeSans, Medium 20'
-
+local function generate_widgets(sites)
     local widgets = { 
         layout = wibox.layout.fixed.vertical
     }
     for _, widgetinfo in ipairs(sites) do
-        local name, action = widgetinfo[1], widgetinfo[2]
+        local image, action = widgetinfo[1], widgetinfo[2]
         local widget = wibox.widget {
             {
                 {
-                    id = name,
-                    markup = "<span foreground='"..colour.."'>"..name.."</span>",
-                    widget = wibox.widget.textbox,
-                    font = font,
+                    image = image,
+                    forced_height = 32,
+                    forced_width = 32,
+                    widget = wibox.widget.imagebox,
                     align = 'center',
-                    forced_width = 150,
                 },
-                top = 10, bottom = 10,
+                top = 6, bottom = 6, left = 9, right = 9,
                 widget = wibox.container.margin
             },
             bg = beautiful.bg_normal,
@@ -44,28 +39,32 @@ local function generate_widgets(sites, user_args)
     return widgets
 end
 
-function websites_template()
-    local container = wibox {
+local function container_template()
+    return  wibox {
         visible = true,
         bg = beautiful.bg_normal,
         height = 225,
-        width = 150,
+        width = 50,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 16)
         end
     }
+end
 
-    local colour = '#6DBFD4'
+function websites_template()
+    local container = container_template()
+
+    -- local colour = '#6DBFD4'
     local sites = {
-        {'Twitter', 'firefox twitter.com'},
-        {'Reddit', 'firefox reddit.com'},
-        {'Youtube', 'firefox youtube.com'},
-        {'Github', 'firefox github.com'},
-        {'Twitch', 'firefox twitch.tv'}
+        {beautiful.twitter_icon, 'firefox twitter.com'},
+        {beautiful.reddit_icon, 'firefox reddit.com'},
+        {beautiful.youtube_icon, 'firefox youtube.com'},
+        {beautiful.github_icon, 'firefox github.com'},
+        {beautiful.twitch_icon, 'firefox twitch.tv'}
     }
 
     container:setup {
-        generate_widgets(sites, {colour = colour}),
+        generate_widgets(sites),
         valign = 'top',
         layout = wibox.container.place
     }
@@ -74,27 +73,19 @@ function websites_template()
 end
 
 function apps_template()
-    local container = wibox {
-        visible = true,
-        bg = beautiful.bg_normal,
-        height = 225,
-        width = 150,
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 16)
-        end
-    }
+    local container = container_template()
 
-    local colour = '#FC6294'
+    -- local colour = '#FC6294'
     local apps = {
-        {'Vscode', 'code'},
-        {'Discord', 'discord'},
-        {'Spotify', 'spotify'},
-        {'Firefox', 'firefox'},
-        {'Kitty', 'kitty'}
+        {beautiful.vscode_icon, 'code'},
+        {beautiful.discord_icon, 'discord'},
+        {beautiful.spotify_icon, 'spotify'},
+        {beautiful.firefox_icon, 'firefox'},
+        {beautiful.terminal_icon, 'kitty'}
     }
 
     container:setup {
-        generate_widgets(apps, {colour = colour}),
+        generate_widgets(apps),
         valign = 'top',
         layout = wibox.container.place
     }

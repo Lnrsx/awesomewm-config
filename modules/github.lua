@@ -3,7 +3,7 @@ function github_template()
         visible = true,
         bg = beautiful.bg_normal,
         height = 460,
-        width = 150,
+        width = 250,
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 16)
         end
