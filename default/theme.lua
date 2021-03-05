@@ -120,7 +120,7 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 theme.wallpaper = themes_path.."default/background.png"
 theme.pfp = themes_path.."default/image.jpeg"
 
-local assets_path = themes_path.."default/assets/"
+theme.assets_path = themes_path.."default/assets/"
 
 local icons = {
     ["file_icon"] = "system/folder.svg",
@@ -160,10 +160,13 @@ local icons = {
     ["reddit_icon"] = "sites/reddit.svg",
     ["twitch_icon"] = "sites/twitch.svg",
     ["twitter_icon"] = "sites/twitter.svg",
+
+    ["sunrise_icon"] = "weather/sunrise.png",
+    ["sunset_icon"] = "weather/sunset.png",
 }
 
 for k,v in pairs(icons) do
-    theme[k] = assets_path..v
+    theme[k] = theme.assets_path..v
 end
 
 theme.rainbow = {
