@@ -1,3 +1,8 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local awful = require("awful")
+
 function sysutils_template (s)
     local sysutil_icons = {
         "heart_icon",

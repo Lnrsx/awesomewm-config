@@ -1,3 +1,8 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local awful = require("awful")
+
 function create_img_widgets(icons, user_args)
 
     local args = user_args or { }

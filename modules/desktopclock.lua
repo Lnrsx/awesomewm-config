@@ -1,3 +1,7 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+
 function desktopclock_template()
     local container = wibox {
         visible = true,

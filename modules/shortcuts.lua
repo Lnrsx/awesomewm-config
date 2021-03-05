@@ -1,3 +1,8 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local awful = require("awful")
+
 local function generate_widgets(sites)
     local widgets = { 
         layout = wibox.layout.fixed.vertical

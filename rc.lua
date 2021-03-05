@@ -3,34 +3,34 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-gears = require("gears")
-awful = require("awful")
+local gears = require("gears")
+local awful = require("awful")
 
 -- Widget and layout library
-wibox = require("wibox")
+local wibox = require("wibox")
 
 -- Theme handling library
-beautiful = require("beautiful")
+local beautiful = require("beautiful")
 
 -- Notification library
-naughty = require("naughty")
-menubar = require("menubar")
-hotkeys_popup = require("awful.hotkeys_popup")
+local naughty = require("naughty")
+local menubar = require("menubar")
+local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
 -- Enables shapes
-shape = require("gears")
+local shape = require("gears")
 
 -- Load Debian menu entries
-debian = require("debian.menu")
-has_fdo, freedesktop = pcall(require, "freedesktop")
+local debian = require("debian.menu")
+local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- Auto run programs
-autorun = true
-autorunApps = {
+local autorun = true
+local autorunApps = {
     "./xrandr.sh" -- Configures monitor positioning and resolution
 }
 if autorun then
@@ -85,16 +85,16 @@ require("modules.github")
 
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
-editor = os.getenv("EDITOR") or "editor"
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "kitty"
+local editor = os.getenv("EDITOR") or "editor"
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -118,7 +118,7 @@ awful.layout.layouts = {
 
 -- Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+local myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -144,7 +144,7 @@ else
     })
 end
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
@@ -152,7 +152,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -274,13 +274,9 @@ awful.placement.bottom(power_menu, { margins = {bottom = 237, left = -625}, pare
 -- Buttons
 awful.placement.bottom(buttons_template(power_menu), { margins = {bottom = 315, left = -625}, parent = awful.screen.primary})
 
--- Mouse bindings
-root.buttons(gears.table.join(
-    
-))
 
 -- Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
 
@@ -339,7 +335,7 @@ globalkeys = gears.table.join(
               {description = "run rofi", group = "launcher"})
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
 
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,
               {description = "toggle floating", group = "client"}),
@@ -374,7 +370,7 @@ clientkeys = gears.table.join(
         {description = "minimize", group = "client"})
 )
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
     end),

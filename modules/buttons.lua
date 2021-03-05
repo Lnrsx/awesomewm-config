@@ -1,3 +1,8 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local awful = require("awful")
+
 function power_menu()
     local container = wibox {
         visible = false,

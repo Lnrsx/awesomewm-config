@@ -1,3 +1,8 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local awful = require("awful")
+
 local favorite_icons = { 
     {"console_icon", "gnome-terminal"},
     {"globe_icon", "firefox"},

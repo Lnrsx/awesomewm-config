@@ -1,3 +1,7 @@
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local gears = require("gears")
+
 local volumearc_widget = require("utils.volume")
 
 function sysinfo_template()
