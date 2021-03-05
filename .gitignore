@@ -1,2 +1,5 @@
 /reminders.txt
 default/image.jpeg
+utils/api_key.lua
+config.json
+utils/weathercache.json

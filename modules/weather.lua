@@ -5,13 +5,10 @@ local watch = require("awful.widget.watch")
 
 local json = require("json")
 
-local get_cmd = [[bash -c "curl -s --show-error -X GET '%s'"]]
-local url = 'http://api.openweathermap.org/data/2.5/weather?lat=51.990808&lon=1.074713&appid='..require("utils.api_key")
+local config = json.load("/home/felix/.config/awesome/config.json")
 
-local ph_r = [[{"coord":{"lon":1.0747,"lat":51.9908},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],
-"base":"stations","main":{"temp":275.87,"feels_like":271.12,"temp_min":275.15,"temp_max":276.48,"pressure":1028,"humidity":87},"visibility":10000,
-"wind":{"speed":4.12,"deg":20},"clouds":{"all":75},"dt":1614910623,"sys":{"type":1,"id":1490,"country":"GB","sunrise":1614925959,"sunset":1614966121},
-"timezone":0,"id":2653845,"name":"Capel Saint Mary","cod":200}]]
+local get_cmd = [[bash -c "curl -s --show-error -X GET '%s'"]]
+local url = 'http://api.openweathermap.org/data/2.5/weather?lat=51.990808&lon=1.074713&appid='..config.openweather
 
 local file_extension = '.png'
 local icon_map = {
@@ -49,7 +46,7 @@ function weather_template()
     local weather_widget = wibox.widget {
         {
             id = 'icon',
-            image = " ",
+            image = beautiful.power_icon,
             forced_height = 64,
             forced_width = 64,
             widget = wibox.widget.imagebox
