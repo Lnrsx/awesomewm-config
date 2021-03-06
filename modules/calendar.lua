@@ -13,7 +13,7 @@ styles.focus = {
 
 styles.header = {
     fg = '#6DBFD4',
-    markup = function(t) return '<span font_desc="BreezeSans, Medium 27">'..t..'</span>' end
+    markup = function(t) return '<span font_desc="BreezeSans, Medium 24">'..t..'</span>' end
 }
 
 styles.weekday = {
@@ -48,8 +48,8 @@ function calendar_template()
     local cal = wibox.widget {
         {
             date         = os.date('*t'),
-            font = 'BreezeSans, Medium 16',
-            spacing      = 10,
+            font = 'BreezeSans, Medium 14',
+            spacing      = 8,
             week_numbers = false,
             start_sunday = false,
             fn_embed = decorate_cell,

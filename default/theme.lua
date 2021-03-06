@@ -163,6 +163,11 @@ local icons = {
 
     ["sunrise_icon"] = "weather/sunrise.png",
     ["sunset_icon"] = "weather/sunset.png",
+
+    ["alert_icon"] = "github/alert.svg",
+    ["bug_icon"] = "github/bug.svg",
+    ["low_prio_icon"] = "github/low_prio.svg",
+    ["feature_icon"] = "github/feature.svg"
 }
 
 for k,v in pairs(icons) do

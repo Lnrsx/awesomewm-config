@@ -56,7 +56,7 @@ function weather_template()
                 {
                     id = "temp",
                     text = " ",
-                    font = 'BreezeSans, Medium 36',
+                    font = 'BreezeSans, Medium 32',
                     widget = wibox.widget.textbox
                 },
                 {
@@ -85,7 +85,6 @@ function weather_template()
                             id = "sunrise",
                             text = " ",
                             alight = 'right',
-                            font = 'BreezeSans, Medium 14',
                             widget = wibox.widget.textbox
                         },
                         spacing = 6,
@@ -102,16 +101,15 @@ function weather_template()
                             id = "sunset",
                             text = " ",
                             alight = 'right',
-                            font = 'BreezeSans, Medium 14',
                             widget = wibox.widget.textbox
                         },
                         spacing = 5,
-                        layout = wibox.layout.fixed.horizontal
+                        layout = wibox.layout.fixed .horizontal
                     },
                     spacing = 4,
                     layout = wibox.layout.fixed.vertical
                 },
-                left = 40,
+                left = 24,
                 widget = wibox.container.margin
             },
             top = 16, left = 50,
@@ -131,7 +129,6 @@ function weather_template()
         valign = 'center',
         layout = wibox.layout.align.horizontal
     }
-    --[[
     local function format_celcius(kelvin)
         return string.format("%s°C", math.floor(kelvin - 273.15))
     end
@@ -155,7 +152,7 @@ function weather_template()
         sunset:set_text(format_hours(sunset_date.hour)..":"..sunset_date.min)
     end
 
-    watch(string.format(get_cmd, url), 1800, update_widget, weather_widget) --]]
+    watch(string.format(get_cmd, url), 1800, update_widget, weather_widget)
 
     return container
 end
