@@ -336,7 +336,7 @@ local globalkeys = gears.table.join(
 )
 
 local clientkeys = gears.table.join(
-
+    
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,
               {description = "toggle floating", group = "client"}),
 

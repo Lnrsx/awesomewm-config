@@ -3,6 +3,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local awful = require("awful")
 
+
 function power_menu()
     local container = wibox {
         visible = false,
@@ -36,7 +37,7 @@ function power_menu()
         -- Shuts down PC
         {{btn = 1, func = function()
             power_menu.visible = false
-            awful.spawn("poweroff")
+            awful.spawn("shutdown now")
         end }},
 
         -- Logs out
@@ -67,7 +68,8 @@ function power_menu()
             gears.shape.circle(cr, width, height)
         end,
         custom_colours = colours,
-        connect_signals = connect_signals
+        connect_signals = connect_signals,
+        buttons = buttons
     })
 
     container:setup {
@@ -104,7 +106,7 @@ function buttons_template(power_menu)
         "search_icon",
         "file_icon",
         "settings_icon",
-        "software_icon"
+        "restart_icon"
     }
 
     local colours = {table.unpack(beautiful.rainbow, 1, 5)}
@@ -144,13 +146,11 @@ function buttons_template(power_menu)
 
         -- Opens settings
         {{btn = 1, func = function()
-            awful.spawn("gnome-control-center")
+            awful.spawn("env XDG_CURRENT_DESKTOP=GNOME gnome-control-center")
         end }},
 
-        -- Opens software catalog
-        {{btn = 1, func = function()
-            awful.spawn("gnome-software")
-        end }},
+        -- Restart awesome
+        {{btn = 1, func = awesome.restart}},
     }
 
     local widgets = create_img_widgets(icons, {
