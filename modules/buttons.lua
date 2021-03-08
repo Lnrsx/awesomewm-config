@@ -36,7 +36,6 @@ function power_menu()
     local buttons = {
         -- Shuts down PC
         {{btn = 1, func = function()
-            power_menu.visible = false
             awful.spawn("shutdown now")
         end }},
 

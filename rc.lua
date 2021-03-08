@@ -83,7 +83,6 @@ require("modules.shortcuts")
 require("modules.weather")
 require("modules.github")
 
-
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "editor"
@@ -99,21 +98,6 @@ local modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.tile,
-    awful.layout.suit.max,
-    awful.layout.suit.spiral,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
 }
 
 -- Menu
@@ -166,35 +150,6 @@ local function set_wallpaper(s)
     end
 end
 
--- Creates a list of image widgets, see favorite_icons for example syntax
-local function create_img_widgets(icons)
-    local widgets = { }
-
-    for _,v in ipairs(icons) do
-        table.insert(widgets, {
-            {
-                {
-                    id = v[1],
-                    image = beautiful[v[1]],
-                    widget = wibox.widget.imagebox
-                },
-                margins = 0,
-                widget = wibox.container.margin
-            },
-            id = v[1].."bg",
-            bg = '#ffffff00',
-            shape = function(cr, width, height)
-                gears.shape.rounded_rect(cr, width, height, 5) 
-            end,
-            widget = wibox.container.background
-        })
-    end
-    widgets.spacing = 7
-    widgets.layout = wibox.layout.fixed.horizontal
-    return widgets
-end
-
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -238,7 +193,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.tools,
             s.tasklist,
         },
-        nil, -- Middle widget placeholder
+        nil,
         { -- Right widget
             spacing = 5,
             layout = wibox.layout.fixed.horizontal,
@@ -262,8 +217,10 @@ awful.placement.bottom(userinfo_template(), { margins = {bottom = 469, left = -6
 awful.placement.bottom(websites_template(), { margins = {bottom = 550, left = 260}, parent = screen.primary})
 awful.placement.bottom(apps_template(), { margins = {bottom = 317, left = 260}, parent = screen.primary})
 
+local main_container, issue_container = github_template()
 -- Github repo tracker
-awful.placement.bottom(github_template(), { margins = {bottom = 315, left = -57}, parent = screen.primary})
+awful.placement.bottom(main_container, { margins = {bottom = 315, left = -57}, parent = screen.primary})
+awful.placement.bottom(issue_container, { margins = {bottom = 180, left = -57}, parent = screen.primary})
 
 -- Weather
 awful.placement.bottom(weather_template(), { margins = {bottom = 392, left = -625}, parent = screen.primary})
@@ -340,14 +297,14 @@ local clientkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,
               {description = "toggle floating", group = "client"}),
 
-    awful.key({ modkey,           }, "Left",      function (c) c:move_to_screen(4) end,
+    awful.key({ modkey,           }, "Left",      function (c) c:move_to_screen(2) end,
+              {description = "move to screen 2", group = "client"}),
+
+    awful.key({ modkey,           }, "Right",      function (c) c:move_to_screen(4) end,
               {description = "move to screen 4", group = "client"}),
 
-    awful.key({ modkey,           }, "Right",      function (c) c:move_to_screen(3) end,
+    awful.key({ modkey,           }, "Up",      function (c) c:move_to_screen(3) end,
               {description = "move to screen 3", group = "client"}),
-
-    awful.key({ modkey,           }, "Up",      function (c) c:move_to_screen(2) end,
-              {description = "move to screen 2", group = "client"}),
     
     awful.key({ modkey,           }, "Down",      function (c) c:move_to_screen(1) end,
               {description = "move to screen 1", group = "client"}),

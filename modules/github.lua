@@ -2,6 +2,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local watch = require("awful.widget.watch")
+local awful = require("awful")
 
 local json = require("json")
 local config = json.load("/home/felix/.config/awesome/config.json")
@@ -18,6 +19,17 @@ function github_template()
             gears.shape.rounded_rect(cr, width, height, 16)
         end
     }
+
+    local issue_container = wibox {
+        visible = false,
+        bg = beautiful.bg_normal,
+        height = 125,
+        width = 250,
+        shape = function(cr, width, height)
+            gears.shape.rounded_rect(cr, width, height, 16)
+        end
+    }
+
     local function get_main_widget(widgets)
         return wibox.widget {
             {
@@ -71,7 +83,7 @@ function github_template()
             ["High Prio"] = beautiful.alert_icon,
             ["Bug"] = beautiful.bug_icon
         }
-        for _, issue in ipairs(response) do
+        for index, issue in ipairs(response) do
             local widget = { 
                 {
                     markup = '<b>'..'• '..issue.title..'</b>',
@@ -79,8 +91,30 @@ function github_template()
                 },
                 layout = wibox.layout.fixed.horizontal 
             }
+
+            local label_widgets = { layout = wibox.layout.fixed.horizontal, spacing = 3 }
     
             for _, label in ipairs(issue.labels) do
+                local label_widget = wibox.widget {
+                    {
+                        {
+                            text = label.name,
+                            font = "BreezeSans, Medium 10",
+                            valign = 'bottom',
+                            widget = wibox.widget.textbox,
+                        },
+                        top = 2, bottom = 2, left = 4, right = 4,
+                        widget = wibox.container.margin,
+                    },
+                    bg = '#'..label.color,
+                    shape = function(cr, width, height)
+                        gears.shape.rounded_bar(cr, width, height)
+                    end,
+                    widget = wibox.container.background,
+                }
+
+                table.insert(label_widgets, label_widget)
+
                 if accepted_labels[label.name] then
                     local icon = {
                         image = accepted_labels[label.name],
@@ -91,6 +125,28 @@ function github_template()
                     table.insert(widget, icon)
                 end
             end
+
+            local issue_info = wibox.widget {
+                {
+                    layout = wibox.layout.align.vertical,
+                    {
+                        text = '• '..issue.title,
+                        font = "BreezeSans, Medium 18",
+                        widget = wibox.widget.textbox
+                    },
+                    {
+                        text = issue.body,
+                        font = "BreezeSans, Medium 10",
+                        forced_height = 75,
+                        forced_width = 225,
+                        valign = 'top',
+                        widget = wibox.widget.textbox
+                    },
+                    label_widgets
+                },
+                margins = 4,
+                widget = wibox.container.margin
+            }
             
             local widget = wibox.widget {
                 {
@@ -105,8 +161,29 @@ function github_template()
                 widget = wibox.container.background
             }
     
-            widget:connect_signal("mouse::enter", function(c) c:set_bg(beautiful.bg_focus) end)
-            widget:connect_signal("mouse::leave", function(c) c:set_bg(beautiful.bg_normal) end)
+            widget:connect_signal("mouse::enter", function(c) 
+                c:set_bg(beautiful.bg_focus)
+            end)
+
+            widget:connect_signal("mouse::leave", function(c) 
+                c:set_bg(beautiful.bg_normal)
+            end)
+
+            widget:buttons(
+                awful.util.table.join(
+                awful.button({}, 1, function()
+                    if (issue_container.active ~= index) or (not issue_container.visible) then
+                        issue_container.active = index
+                        issue_container:setup {
+                            issue_info,
+                            valign = 'top',
+                            layout = wibox.container.place
+                        }
+                        issue_container.visible = true
+                    else
+                        issue_container.visible = false
+                    end
+                end)))
     
             table.insert(widgets, widget)
         end
@@ -125,7 +202,7 @@ function github_template()
         layout = wibox.container.place
     }
 
-    watch(cmd, 1800, update_widget, main_widget)
+    -- watch(cmd, 1800, update_widget, main_widget)
 
-    return container
+    return container, issue_container
 end

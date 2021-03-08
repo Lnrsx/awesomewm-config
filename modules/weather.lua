@@ -152,7 +152,7 @@ function weather_template()
         sunset:set_text(format_hours(sunset_date.hour)..":"..sunset_date.min)
     end
 
-    watch(string.format(get_cmd, url), 1800, update_widget, weather_widget)
+    -- watch(string.format(get_cmd, url), 1800, update_widget, weather_widget)
 
     return container
 end
